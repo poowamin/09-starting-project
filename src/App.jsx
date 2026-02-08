@@ -7,7 +7,7 @@ import NoProjectSelected from "./components/NoProjectSelected";
 function App() {
   const [projectState, setProjectState] = useState({
     selectedProject: undefined,
-    project: [],
+    projects: [],
   });
 
   function handleStartAddProject() {
@@ -19,10 +19,25 @@ function App() {
     });
   }
 
+  function handleAddProject(projectData) {
+    setProjectState((prevState) => {
+      const newProject = {
+        ...projectData,
+        id: Math.random().toString(),
+      };
+      return {
+        ...prevState,
+        project: [...prevState.projects, newProject],
+      };
+    });
+  }
+
+  console.log(projectState);
+
   let content;
 
   if (projectState.selectedProject === null) {
-    content = <NewProject />;
+    content = <NewProject onAddProject={handleAddProject} />;
   } else if (projectState.selectedProject === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
