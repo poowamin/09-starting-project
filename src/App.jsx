@@ -7,7 +7,8 @@ import SelectedProject from "./components/SelectedProject";
 
 function App() {
   const [projectState, setProjectState] = useState({
-    selectedProject: undefined,
+    // store the id of the currently selected project
+    selectedProjectId: undefined,
     projects: [],
   });
 
@@ -24,7 +25,7 @@ function App() {
     setProjectState((prevState) => {
       return {
         ...prevState,
-        selectedProject: null,
+        selectedProjectId: null,
       };
     });
   }
@@ -33,7 +34,7 @@ function App() {
     setProjectState((prevState) => {
       return {
         ...prevState,
-        selectedProject: undefined,
+        selectedProjectId: undefined,
       };
     });
   }
@@ -45,10 +46,11 @@ function App() {
         ...projectData,
         id: projectId,
       };
+      // add project but leave selection alone so we stay on the default page
       return {
         ...prevState,
-        selectedProject: projectId,
         projects: [...prevState.projects, newProject],
+        selectedProjectId: undefined,
       };
     });
   }
@@ -56,18 +58,18 @@ function App() {
   // console.log(projectState);
 
   const selectedProject = projectState.projects.find(
-    (project) => project.id === projectState.selectedProject,
+    (project) => project.id === projectState.selectedProjectId,
   );
   let content = <SelectedProject project={selectedProject} />;
 
-  if (projectState.selectedProject === null) {
+  if (projectState.selectedProjectId === null) {
     content = (
       <NewProject
         onAddProject={handleAddProject}
         onCancel={handleCancelAddProject}
       />
     );
-  } else if (projectState.selectedProject === undefined) {
+  } else if (projectState.selectedProjectId === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
 

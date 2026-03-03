@@ -22,11 +22,14 @@ export default function ProjectSidebar({
           if (project.id === selectedProjectId) {
             cssClasses += " bg-stone-800 text-stone-200";
           } else {
-            cssClasses += "text-stone-400 hover:bg-stone-800";
+            cssClasses += " text-stone-400 hover:bg-stone-800";
           }
           return (
             <li key={project.id}>
-              <button className={cssClasses} onClick={onSelectProject}>
+              <button
+                className={cssClasses}
+                onClick={() => onSelectProject(project.id)}
+              >
                 {project.title}
               </button>
             </li>

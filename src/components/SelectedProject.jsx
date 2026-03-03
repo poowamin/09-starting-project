@@ -1,4 +1,8 @@
-export default function SelectedProject() {
+export default function SelectedProject({ project }) {
+  if (!project) {
+    return <p className="mt-16 text-center text-stone-500">No project selected.</p>;
+  }
+
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
