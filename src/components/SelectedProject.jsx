@@ -1,3 +1,5 @@
+import Task from "./Task.jsx";
+
 export default function SelectedProject({ project, onDelete }) {
   if (!project) {
     return (
@@ -30,7 +32,7 @@ export default function SelectedProject({ project, onDelete }) {
           {project.description}
         </p>
       </header>
-      TASKS
+      <Task />
     </div>
   );
 }
