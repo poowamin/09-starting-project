@@ -1,6 +1,12 @@
 import Task from "./Task.jsx";
 
-export default function SelectedProject({ project, onDelete }) {
+export default function SelectedProject({
+  project,
+  onDelete,
+  onAddTask,
+  onDeleteTask,
+  tasks,
+}) {
   if (!project) {
     return (
       <p className="mt-16 text-center text-stone-500">No project selected.</p>
@@ -32,7 +38,7 @@ export default function SelectedProject({ project, onDelete }) {
           {project.description}
         </p>
       </header>
-      <Task />
+      <Task onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks} />
     </div>
   );
 }
