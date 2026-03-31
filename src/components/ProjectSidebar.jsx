@@ -16,14 +16,12 @@ export default function ProjectSidebar({
       </div>
       <ul className="mt-8">
         {projects.map((project) => {
-          let cssClasses =
-            "w-full text-left px-2 py-1 rounded-sm text-stone-400 hover:bg-stone-800";
-
-          if (project.id === selectedProjectId) {
-            cssClasses += " bg-stone-800 text-stone-200";
-          } else {
-            cssClasses += " text-stone-400 hover:bg-stone-800";
-          }
+          const isSelected = project.id === selectedProjectId;
+          const cssClasses = `w-full text-left px-2 py-1 rounded-sm hover:bg-stone-20 ${
+            isSelected
+              ? "bg-stone-800 text-stone-200"
+              : "text-stone-400"
+          }`;
           return (
             <li key={project.id}>
               <button
